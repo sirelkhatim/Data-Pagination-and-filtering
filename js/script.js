@@ -29,14 +29,16 @@ function showPage(list, pageNumber){
    // fetch the student list element on the page
    let studentList = document.getElementsByClassName('student-list')[0];
    studentList.innerHTML = '';
-   
+   if(list.length == 0){
+      studentInfo += '<big><h1>No results</h1></big>'
+   }else{
    // loop through the list argument and add info to studentInfo
    for(let i = 0; i < list.length; i++){
       if(i>=startIdx && i< endIdx){
          studentInfo += `<li class="student-item cf">
          <div class="student-details">
            <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
-           <h3>${list[i].name.last} ${list[i].name.last}</h3>
+           <h3>${list[i].name.first} ${list[i].name.last}</h3>
            <span class="email">${list[i].email}</span>
          </div>
          <div class="joined-details">
@@ -46,6 +48,7 @@ function showPage(list, pageNumber){
       }
 
    }
+}
    //insert the student info into the studentList element
    studentList.insertAdjacentHTML("beforeend", studentInfo)
 }
